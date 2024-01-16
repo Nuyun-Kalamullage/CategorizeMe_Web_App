@@ -1,0 +1,12 @@
+MVC Architecture
+API Layer -> Service Layer -> Data Access Layer
+Data Access Layer -> Service Layer -> API Layer
+Java Record
+Java Controllers
+Java ENUM
+Gson Library
+Dependency Injection with Constructor and Annotations like ( @Autowired and @Service || @Component )
+Docker
+MongoDB
+
+
