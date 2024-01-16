@@ -7,6 +7,12 @@ Java ENUM
 Gson Library
 Dependency Injection with Constructor and Annotations like ( @Autowired and @Service || @Component )
 Docker
-MongoDB
+MongoDB {for tasks API}
+Postgres SQL {for user details holder}
+Lombok Library (annotation Library that contains @AllArgsConstructor, @Data, etc.)
+Create a database in mongoDB called "CategorizeMeDB"
+Create an Interface for manage database & queries called TaskRepository.
+Add some basic test cases in CategorizeMeApplication.java file.
+Use @AllArgsConstructor to inject the taskRepository to the TaskService class. (without using @Autowired and Constructor Injection)
 
 

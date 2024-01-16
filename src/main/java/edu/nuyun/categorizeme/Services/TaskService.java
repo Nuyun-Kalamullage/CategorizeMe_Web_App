@@ -1,8 +1,8 @@
 package edu.nuyun.categorizeme.Services;
 
-import edu.nuyun.categorizeme.models.Category;
+import edu.nuyun.categorizeme.MongoDB.TaskRepository;
 import edu.nuyun.categorizeme.models.Task;
-import edu.nuyun.categorizeme.models.TaskPriority;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,23 +14,13 @@ import java.util.List;
  * @package edu.nuyun.categorizeme.Services
  * @project_Name CategorizeMe
  */
-
+@AllArgsConstructor
 @Service
 public class TaskService {
+
+    private final TaskRepository taskRepository;
+
     public List<Task> getTasks(){
-        return List.of(
-                new Task(
-                        "0094",
-                        "Do The Assignment",
-                        "Data Structures & Algorithms Assignment Due Date is Tomorrow",
-                        Category.STUDY,
-                        TaskPriority.VERY_IMPORTANT),
-                new Task(
-                        "8267",
-                        "Pay The Home Bills",
-                        "Electricity, Water, and Phone bill Due Date is Next Week",
-                        Category.HOME,
-                        TaskPriority.IMPORTANT)
-        );
+        return taskRepository.findAll();
     }
 }

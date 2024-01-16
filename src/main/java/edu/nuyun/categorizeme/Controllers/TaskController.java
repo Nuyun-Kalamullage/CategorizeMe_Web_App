@@ -2,6 +2,7 @@ package edu.nuyun.categorizeme.Controllers;
 
 import edu.nuyun.categorizeme.Services.TaskService;
 import edu.nuyun.categorizeme.models.Task;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +19,13 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "api/v1/task")
+@AllArgsConstructor
 public class TaskController {
     private final TaskService taskService;
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
+//    @Autowired
+//    public TaskController(TaskService taskService) {
+//        this.taskService = taskService;
+//    }
     @GetMapping
     public List<Task> getTasks(){
         return taskService.getTasks();
