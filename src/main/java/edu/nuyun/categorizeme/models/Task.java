@@ -1,8 +1,6 @@
 package edu.nuyun.categorizeme.models;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

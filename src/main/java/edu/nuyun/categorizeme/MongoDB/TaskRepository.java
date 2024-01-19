@@ -3,6 +3,7 @@ package edu.nuyun.categorizeme.MongoDB;
 import edu.nuyun.categorizeme.models.Task;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
  * @package edu.nuyun.categorizeme.MongoDB
  * @project_Name CategorizeMe
  */
+@Repository
 public interface TaskRepository extends MongoRepository<Task, String> {
     Optional<Task> findTaskByTitle(String title);
 //    @Query("")

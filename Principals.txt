@@ -14,5 +14,9 @@ Create a database in mongoDB called "CategorizeMeDB"
 Create an Interface for manage database & queries called TaskRepository.
 Add some basic test cases in CategorizeMeApplication.java file.
 Use @AllArgsConstructor to inject the taskRepository to the TaskService class. (without using @Autowired and Constructor Injection)
+work with both Docker and localhost Mongodb servers including mongosh cmd ,Mongo Compass and mongoExpress.
+connect postgresDB to application and added JPA repository to manage data
+CommandLineRunner Bean for added sample values to database.
+we have to set getters to the appropriate entity class t when we serialize the object.
 
 
