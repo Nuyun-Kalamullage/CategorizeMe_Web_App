@@ -76,4 +76,4 @@ To set up and run the CategorizeMe Application, follow these steps:
 ## Conclusion
 CategorizeMe aims to simplify and enhance the way tasks are managed, providing users with a versatile and intuitive platform. Whether you're a professional managing complex projects or an individual organizing personal goals, CategorizeMe is designed to streamline your task management experience.
 
-[repository-link]: # (https://github.com/Nuyun-Kalamullage/CategorizeMe_Web_App.git)
+[repository-link]: # (https://github.com/Nuyun-Kalamullage/CategorizeMe_Web_App)
