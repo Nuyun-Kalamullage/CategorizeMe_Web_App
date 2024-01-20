@@ -1,6 +1,6 @@
 package edu.nuyun.categorizeme.PostgresDB;
 
-import edu.nuyun.categorizeme.models.UserTable;
+import edu.nuyun.categorizeme.models.UserModel;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +19,8 @@ public class UserConfig {
     @Bean
     CommandLineRunner commandLineRunner(UserRepository userRepository){
         return args -> {
-            UserTable nuyun = new UserTable( "Nuyun", "nuyunpabasara@gmail.com");
-            UserTable pabasara = new UserTable( "Pabasara", "nuyun457@gmail.com");
+            UserModel nuyun = new UserModel( "Nuyun", "nuyunpabasara@gmail.com");
+            UserModel pabasara = new UserModel( "Pabasara", "nuyun457@gmail.com");
             userRepository.saveAll(
                     List.of(nuyun, pabasara));
         };

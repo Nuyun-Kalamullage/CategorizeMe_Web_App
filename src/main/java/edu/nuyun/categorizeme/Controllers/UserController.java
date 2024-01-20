@@ -1,11 +1,9 @@
 package edu.nuyun.categorizeme.Controllers;
 
 import edu.nuyun.categorizeme.Services.UserService;
-import edu.nuyun.categorizeme.models.UserTable;
+import edu.nuyun.categorizeme.models.UserModel;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +21,20 @@ public class UserController {
 
     private final UserService userService;
     @GetMapping
-    public List<UserTable> getAllUsers(){
+    public List<UserModel> getAllUsers() {
         return userService.getUsers();
     }
+    @PostMapping
+    public void registerNewUser(@RequestBody UserModel user){
+        userService.addNewUser(user);
+    }
 
+    @DeleteMapping(path = "{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId){
+        userService.deleteCurrentUser(userId);
+    }
+    @PutMapping(path = "{userId}")
+    public void updateUser(@PathVariable("userId") Long userId, @RequestParam(required = false) String name, @RequestParam(required = false) String email){
+        userService.updateExistsUser(userId, name, email);
+    }
 }

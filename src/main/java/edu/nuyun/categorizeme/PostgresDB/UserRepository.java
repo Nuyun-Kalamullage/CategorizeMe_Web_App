@@ -1,9 +1,11 @@
 package edu.nuyun.categorizeme.PostgresDB;
 
-import edu.nuyun.categorizeme.models.Task;
-import edu.nuyun.categorizeme.models.UserTable;
+import edu.nuyun.categorizeme.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * @author Nuyun-Kalamullage
@@ -13,5 +15,8 @@ import org.springframework.stereotype.Repository;
  * @project_Name CategorizeMe
  */
 @Repository
-public interface UserRepository extends JpaRepository<UserTable, Long> {
+public interface UserRepository extends JpaRepository<UserModel, Long> {
+
+    @Query("SELECT s from UserModel s WHERE s.email = ?1")
+    Optional<UserModel> findUserModelByEmail(String email);
 }

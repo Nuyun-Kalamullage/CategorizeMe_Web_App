@@ -2,6 +2,7 @@ package edu.nuyun.categorizeme.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Nuyun-Kalamullage
@@ -12,22 +13,32 @@ import lombok.Getter;
  */
 @Entity
 @Table
-public class UserTable{
+public class UserModel {
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
 
+    @Getter
+    @Setter
     private Long userId;
     @Getter
+    @Setter
     private String name;
     @Getter
+    @Setter
     private String email;
 
-    public UserTable(String name, String email){
+    public UserModel(Long userId, String name, String email) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
     }
-    public UserTable(){}
+
+    public UserModel(String name, String email){
+        this.name = name;
+        this.email = email;
+    }
+    public UserModel(){}
 
     @Override
     public String toString() {

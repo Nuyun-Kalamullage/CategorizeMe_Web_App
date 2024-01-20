@@ -18,5 +18,8 @@ work with both Docker and localhost Mongodb servers including mongosh cmd ,Mongo
 connect postgresDB to application and added JPA repository to manage data
 CommandLineRunner Bean for added sample values to database.
 we have to set getters to the appropriate entity class t when we serialize the object.
-
-
+@Transient use to avoid adding columns to the database.
+POST request using User Controller and Postgres DB.
+set error message visible to user request in POST request.
+DELETE request using Path Variable and delete the user.
+UPDATE the user using PUT request with error handling.
