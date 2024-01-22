@@ -1,8 +1,7 @@
 package edu.nuyun.categorizeme.PostgresDB;
 
-import edu.nuyun.categorizeme.models.UserModel;
+import edu.nuyun.categorizeme.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -15,8 +14,11 @@ import java.util.Optional;
  * @project_Name CategorizeMe
  */
 @Repository
-public interface UserRepository extends JpaRepository<UserModel, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT s from UserModel s WHERE s.email = ?1")
-    Optional<UserModel> findUserModelByEmail(String email);
+//    @Query("SELECT s from User s WHERE s.email = ?1")
+    Optional<User> findUserByEmail(String email);
+
+//    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.email = :email")
+    boolean existsUserByEmail(String email);
 }

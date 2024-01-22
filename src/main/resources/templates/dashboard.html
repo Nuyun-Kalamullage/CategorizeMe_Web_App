@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="../src/style.css">
+
+    <!-- Include Quill.js and Firebase scripts -->
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <!-- Include Quill.js theme stylesheet -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- Include Font Awesome -->
+    <script src="https://kit.fontawesome.com/25a5513389.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        .h2{
+
+        }
+
+        .notes {
+            display: flex;
+            height: 100%;
+
+        }
+
+        .notes * {
+            font-family: sans-serif;
+        }
+
+        .notes__sidebar {
+            border-right: 2px solid #dddddd;
+            flex-shrink: 0;
+            overflow-y: auto;
+            padding: 1em;
+            width: 300px;
+        }
+
+
+        .notes__add {
+            background: #009578;
+            border: none;
+            border-radius: 7px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            padding: 0.75em 0;
+            width: 100%;
+        }
+
+        .notes__add:hover {
+            background: #00af8c;
+        }
+
+        .notessearch{
+            background: #ffffff;
+            color: #ffffff;
+            border-radius: 7px;
+            -webkit-text-fill-color: black;
+            cursor: pointer;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            padding: 0.75em 0;
+            width: 100%;
+        }
+
+        .notes__list-item {
+            cursor: pointer;
+        }
+
+        .notes__list-item--selected {
+            background: #eeeeee;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .notes__small-title,
+        .notes__small-updated {
+            padding: 10px;
+        }
+
+        .notes__small-title {
+            font-size: 1.2em;
+        }
+
+        .notes__small-body {
+            padding: 0 10px;
+        }
+
+        .notes__small-updated {
+            color: #aaaaaa;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .notes__preview {
+            display: flex;
+            flex-direction: column;
+            padding: 2em 3em;
+            flex-grow: 1;
+        }
+
+        .notes__title,
+        .notes__body {
+            border: none;
+            outline: none;
+            /* width: 100%; */
+        }
+
+        .notes__title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .notes__body {
+            flex-grow: 1;
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-top: 2em;
+            resize: block;
+        }
+        #editor{
+            flex-direction: row;
+            /* height: none;
+            width: none; */
+        }
+        *{padding:0;margin:0;}
+
+        body{
+            font-family:Verdana, Geneva, sans-serif;
+            font-size:18px;
+            background-color:rgb(255, 255, 255);
+        }
+
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:40px;
+            right:40px;
+            background-color:#0C9;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+        .my-float{
+            margin-top:22px;
+        }
+        .save_button{
+            background: #009578;
+            border: none;
+            border-radius: 7px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            padding: 0.75em;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="padding: 20px">CategorizeMe</h1>
+<div class="notes" id="app">
+    <div class="notes__sidebar">
+        <a href="../index.html">
+            <button class="notes__add" type="button">Back to Home</button>
+        </a><br><br>
+        <input type="search" class="notessearch" placeholder="Type to Search" >
+        <div style="display: flex;">
+            <div style="padding: 10px;">
+                <label for="category">Category:</label>
+                <br>
+                <select id="category" name="category">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                </select><br>
+            </div>
+            <div style="padding: 10px;">
+                <label for="due-date">Due Date:</label><br>
+                <input type="date" id="due-date" name="due-date"><br>
+            </div>
+
+        </div>
+
+        <div class="notes__list">
+            <!-- Add your list items here -->
+            <div class="notes__list-item notes__list-item--selected">
+                <div style="border-top: 1px solid #ccc;padding-top: 10px;"></div>
+                <div class="notes__small-title">Title of the Task</div>
+                <div class="notes__small-body">Importance</div>
+                <div class="notes__small-body">Category</div>
+                <div class="notes__small-updated">Thursday 3:30pm</div>
+                <div style="border-bottom: 1px solid #ccc;padding-bottom: 10px;margin-bottom: 10px"></div>
+            </div>
+            <!-- Add more list items as needed -->
+            <div class="notes__list-item notes__list-item--selected">
+                <div class="notes__small-title">Title of the Task</div>
+                <div class="notes__small-body">Importance</div>
+                <div class="notes__small-body">Category</div>
+                <div class="notes__small-updated">Thursday 3:30pm</div>
+                <div style="border-bottom: 1px solid #ccc;padding-bottom: 10px;margin-bottom: 10px"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="notes__preview">
+        <input class="notes__title" type="text" placeholder="Enter a title...">
+        <div id="toolbar"></div>
+        <div id="editor"></div>
+        <div style="display: flex;">
+            <div style="padding: 10px;">
+                <label for="category">Category:</label>
+                <br>
+                <select id="currrent_category" name="category">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                </select><br>
+            </div>
+            <div style="padding: 10px;">
+                <label for="due-date">Due Date:</label><br>
+                <input type="date" id="currrent_due_date" name="due-date"><br>
+            </div>
+            <div style="display: flex; justify-content: flex-end; position: fixed; bottom: 10px; right: 4%;">
+                <button class="save_button" type="button">Save Task</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var toolbarOptions = [
+        [{ 'font': [] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
+        [{ 'header': '1' }, { 'header': '2' }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ size: ['small', false, 'large', 'huge'] }],
+        [],
+        ['link', 'image'],
+        [{ 'color': [] }, { 'background': [] }],
+    ];
+
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOptions
+        }
+    });
+
+    var inputF = document.getElementById("editor");
+
+    quill.on('text-change', function () {
+        var delta = quill.getContents();
+        var preciousContent = JSON.stringify(delta);
+        inputF.value = preciousContent;
+        console.log(preciousContent);
+    });
+</script>
+
+<script src="js/main.js" type="module"></script>
+
+</body>
+</html>

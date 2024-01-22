@@ -1,6 +1,8 @@
 package edu.nuyun.categorizeme.models;
 
 import com.google.gson.Gson;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @package edu.nuyun.categorizeme.models
  * @project_Name CategorizeMe
  */
+//@EqualsAndHashCode(callSuper = true)
 //@Data
 @Document
 public record Task (@Id String id, @Indexed(unique = true) String title, String description, Category category, TaskPriority taskPriority) {

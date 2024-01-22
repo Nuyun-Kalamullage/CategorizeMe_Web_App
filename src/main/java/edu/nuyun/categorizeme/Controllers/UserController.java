@@ -1,9 +1,15 @@
 package edu.nuyun.categorizeme.Controllers;
 
 import edu.nuyun.categorizeme.Services.UserService;
-import edu.nuyun.categorizeme.models.UserModel;
+import edu.nuyun.categorizeme.models.DTO.UserDTO;
+import edu.nuyun.categorizeme.models.User;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResponseExtractor;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
 
@@ -21,12 +27,13 @@ public class UserController {
 
     private final UserService userService;
     @GetMapping
-    public List<UserModel> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getUsers();
     }
     @PostMapping
-    public void registerNewUser(@RequestBody UserModel user){
-        userService.addNewUser(user);
+    public ResponseEntity<UserDTO> registerNewUser(@RequestBody User user){
+        System.out.println(user);
+        return new ResponseEntity<>(userService.addNewUser(user), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{userId}")

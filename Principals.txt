@@ -9,7 +9,7 @@ Dependency Injection with Constructor and Annotations like ( @Autowired and @Ser
 Docker
 MongoDB {for tasks API}
 Postgres SQL {for user details holder}
-Lombok Library (annotation Library that contains @AllArgsConstructor, @Data, etc.)
+Lombok Library (annotation Library that contains @AllArgsConstructor, @Data, @Getter, @Setter etc.)
 Create a database in mongoDB called "CategorizeMeDB"
 Create an Interface for manage database & queries called TaskRepository.
 Add some basic test cases in CategorizeMeApplication.java file.
@@ -23,3 +23,5 @@ POST request using User Controller and Postgres DB.
 set error message visible to user request in POST request.
 DELETE request using Path Variable and delete the user.
 UPDATE the user using PUT request with error handling.
+Default LOGIN implemented with recommended classes.
+Connected PSQL user-model table as login backend database.

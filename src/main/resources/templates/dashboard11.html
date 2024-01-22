@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Organizer</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2>Task Organizer</h2>
+<form>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="category">Category:</label><br>
+    <select id="category" name="category">
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+    </select><br>
+    <label for="due-date">Due Date:</label><br>
+    <input type="date" id="due-date" name="due-date"><br>
+    <button type="submit">Save</button>
+</form>
+<h3>Tasks</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Due Date</th>
+    </tr>
+    </thead>
+    <tbody id="tasks">
+    <!-- Tasks will be populated here -->
+    </tbody>
+</table>
+<script>
+    // Sample data
+    const tasks = [
+        {title: 'Task 1', category: 'work', dueDate: '2023-03-01'},
+        {title: 'Task 2', category: 'personal', dueDate: '2023-03-05'},
+    ];
+
+    // Populate tasks
+    const tasksTable = document.getElementById('tasks');
+    tasks.forEach(task => {
+        const row = tasksTable.insertRow();
+        const titleCell = row.insertCell();
+        const categoryCell = row.insertCell();
+        const dueDateCell = row.insertCell();
+
+        titleCell.textContent = task.title;
+        categoryCell.textContent = task.category;
+        dueDateCell.textContent = task.dueDate;
+    });
+</script>
+</body>
+</html>

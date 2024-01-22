@@ -1,10 +1,14 @@
 package edu.nuyun.categorizeme.PostgresDB;
 
-import edu.nuyun.categorizeme.models.UserModel;
+import edu.nuyun.categorizeme.models.Role;
+import edu.nuyun.categorizeme.models.User;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,14 +19,21 @@ import java.util.List;
  * @project_Name CategorizeMe
  */
 @Configuration
+@AllArgsConstructor
 public class UserConfig {
+    private final PasswordEncoder passwordEncoder ;
     @Bean
-    CommandLineRunner commandLineRunner(UserRepository userRepository){
+    CommandLineRunner userCommandLineRunner(UserRepository userRepository, RoleRepository roleRepository){
         return args -> {
-            UserModel nuyun = new UserModel( "Nuyun", "nuyunpabasara@gmail.com");
-            UserModel pabasara = new UserModel( "Pabasara", "nuyun457@gmail.com");
+            User nuyun = new User( "Nuyun", "nuyunpabasara@gmail.com", passwordEncoder.encode("nuyun123"));
+            User pabasara = new User( "Pabasara", "nuyun457@gmail.com",  passwordEncoder.encode("pabasara"));
+            Role user = new Role("USER");
+            Role admin = new Role("ADMIN");
+            nuyun.setRoles(List.of(user));
+            pabasara.setRoles(Collections.singletonList(admin));
             userRepository.saveAll(
                     List.of(nuyun, pabasara));
         };
     }
+
 }

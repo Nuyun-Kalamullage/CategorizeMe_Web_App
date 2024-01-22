@@ -3,6 +3,7 @@ package edu.nuyun.categorizeme.Services;
 import edu.nuyun.categorizeme.MongoDB.TaskRepository;
 import edu.nuyun.categorizeme.models.Task;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
