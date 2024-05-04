@@ -21,18 +21,16 @@ public class TaskConfig {
     CommandLineRunner taskCommandLineRunner(TaskRepository taskRepository){
         return args -> {
             Task task1 = new Task(
-                    "0014",
                     "The Assignment",
                     "Data Structures & Algorithms Assignment Due Date is Tomorrow",
                     Category.STUDY,
                     TaskPriority.VERY_IMPORTANT);
             Task task2 = new Task(
-                    "8267",
                     "Pay The Home Bills",
                     "Electricity, Water, and Phone bill Due Date is Next Week",
                     Category.HOME,
                     TaskPriority.IMPORTANT);
-            taskRepository.save(task2);
+//            taskRepository.save(task2);
             taskRepository.findTaskByTitle(task1.title()).ifPresentOrElse(task->{
                 System.out.println(task + " Already exists");
             },()->{

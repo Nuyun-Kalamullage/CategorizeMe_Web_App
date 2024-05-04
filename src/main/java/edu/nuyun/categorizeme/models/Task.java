@@ -19,6 +19,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public record Task (@Id String id, @Indexed(unique = true) String title, String description, Category category, TaskPriority taskPriority) {
     private static final Gson gson = new Gson();
+
+    public Task(String title, String description, Category category, TaskPriority taskPriority) {
+        this(null, title, description, category, taskPriority);
+    }
+
     @Override
     public String toString() {
         return gson.toJson(this);

@@ -33,7 +33,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->{
-//            authorizationManagerRequestMatcherRegistry.requestMatchers("/api/**").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers("/api/**").permitAll();//to connect React Front-end without authentication
             authorizationManagerRequestMatcherRegistry.anyRequest().authenticated();
         });
         httpSecurity.httpBasic(Customizer.withDefaults());
