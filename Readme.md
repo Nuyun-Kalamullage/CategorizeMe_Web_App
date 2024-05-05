@@ -49,6 +49,9 @@ The CategorizeMe Application leverages the following technologies:
 #### **Gson Library:**
 >Handling JSON serialization and deserialization with Gson.
 
+#### **JWT Library:**
+>Handling JWT Tokens Generating and Decoding purposes.
+
 #### **Dependency Injection:**
 >Utilizing dependency injection with constructor and annotations like @Autowired, @Service, @Component.
 

@@ -2,14 +2,12 @@ package edu.nuyun.categorizeme.Controllers;
 
 import edu.nuyun.categorizeme.Services.UserService;
 import edu.nuyun.categorizeme.models.DTO.UserDTO;
+import edu.nuyun.categorizeme.models.DTO.UserDTOOld;
 import edu.nuyun.categorizeme.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResponseExtractor;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
 
@@ -20,6 +18,7 @@ import java.util.List;
  * @package edu.nuyun.categorizeme.Controllers
  * @project_Name CategorizeMe
  */
+@CrossOrigin("http://localhost:3000") //to connect the React frontend
 @AllArgsConstructor
 @RestController
 @RequestMapping(path="api/v1/users")
@@ -35,7 +34,6 @@ public class UserController {
         System.out.println(user);
         return new ResponseEntity<>(userService.addNewUser(user), HttpStatus.CREATED);
     }
-
     @DeleteMapping(path = "{userId}")
     public void deleteUser(@PathVariable("userId") Long userId){
         userService.deleteCurrentUser(userId);
